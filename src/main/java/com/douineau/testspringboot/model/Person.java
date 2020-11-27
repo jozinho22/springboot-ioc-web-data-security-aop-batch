@@ -4,17 +4,15 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Person {
-	
-	@Id
-	private Integer id;
-	private UUID uuid;
+public class Person extends AbstractEntity {
+
 	private String name;
 	@OneToMany
+	@JoinColumn(name = "person_id")
 	private List<Laptop> laptops;
 	
 	public Person() {
@@ -22,18 +20,6 @@ public class Person {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Integer getId() {
-		return id;
-	}
-	public void setId(Integer id) {
-		this.id = id;
-	}
-	public UUID getUuid() {
-		return uuid;
-	}
-	public void setUuid(UUID uuid) {
-		this.uuid = uuid;
-	}
 	public String getName() {
 		return name;
 	}
@@ -51,7 +37,7 @@ public class Person {
 
 	@Override
 	public String toString() {
-		return "Person [id=" + id + ", uuid=" + uuid + ", name=" + name + ", /n laptops=" + laptops + "]";
+		return "Person [id=" + super.getId() + ", name=" + name + ", /n laptops=" + laptops + "]";
 	}
 
 }

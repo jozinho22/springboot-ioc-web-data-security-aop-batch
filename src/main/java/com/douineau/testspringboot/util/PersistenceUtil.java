@@ -8,7 +8,7 @@ import javax.persistence.Persistence;
 
 public class PersistenceUtil {
 
-    private static final String PERSISTENCE_UNIT_NAME = "isthme_pu";
+    private static final String PERSISTENCE_UNIT_NAME = "test_sb_pu";
     
 	public static EntityManager getEntityManager() {
 		
