@@ -9,26 +9,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.douineau.testspringboot.model.Person;
-import com.douineau.testspringboot.service.PersonService;
+import com.douineau.testspringboot.model.Laptop;
+import com.douineau.testspringboot.service.LaptopService;
 
 @RestController
-@RequestMapping("/persons")
-public class PersonController {
+@RequestMapping("/laptops")
+public class LaptopController {
 	
 	@Autowired
-	private PersonService service;
+	private LaptopService service;
 	
 	@GetMapping
-	public List<Person> getPersons() {			
-		return service.getPersons();
+	public List<Laptop> getLaptops() {			
+		return service.getLaptops();
 				
 	}
 	
 	@PostMapping
-	public String addPersons(@RequestBody List<Person> persons) {
-		service.addPersons(persons);
-		return "Personnes insérées";
+	public String addLaptops(@RequestBody List<Laptop> laptops) {
+		service.addLaptops(laptops);
+		return "Laptops insérées";
 				
 	}
 

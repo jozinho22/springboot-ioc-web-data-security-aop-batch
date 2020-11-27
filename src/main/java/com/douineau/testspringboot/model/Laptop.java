@@ -1,7 +1,5 @@
 package com.douineau.testspringboot.model;
 
-import java.util.UUID;
-
 import javax.persistence.Entity;
 
 @Entity
