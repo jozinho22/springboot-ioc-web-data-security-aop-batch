@@ -7,16 +7,15 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
 @Entity
-public class Person extends AbstractEntity {
+public class Disciple extends AbstractEntity {
 
 	private String name;
 	@OneToMany
-	@JoinColumn(name = "person_id")
-	private List<Laptop> laptops;
+	@JoinColumn(name = "disciple_id")
+	private List<Technique> techniques;
 	
-	public Person() {
+	public Disciple() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public String getName() {
@@ -26,17 +25,17 @@ public class Person extends AbstractEntity {
 		this.name = name;
 	}
 
-	public List<Laptop> getLaptops() {
-		return laptops;
+	public List<Technique> getTechniques() {
+		return techniques;
 	}
 
-	public void setLaptops(List<Laptop> laptops) {
-		this.laptops = laptops;
+	public void setTechniques(List<Technique> techniques) {
+		this.techniques = techniques;
 	}
 
 	@Override
 	public String toString() {
-		return "Person [id=" + super.getId() + ", name=" + name + ", /n laptops=" + laptops + "]";
+		return "Disciple [name=" + name + ", techniques=" + techniques + "]";
 	}
 
 }

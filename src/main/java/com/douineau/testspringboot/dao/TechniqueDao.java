@@ -3,9 +3,9 @@ package com.douineau.testspringboot.dao;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.douineau.testspringboot.model.Laptop;
+import com.douineau.testspringboot.model.Technique;
 
 @Repository
-public interface LaptopDao extends CrudRepository<Laptop, Integer> {
+public interface TechniqueDao extends CrudRepository<Technique, Integer> {
 
 }
