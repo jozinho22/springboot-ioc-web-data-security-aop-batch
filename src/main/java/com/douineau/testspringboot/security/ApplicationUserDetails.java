@@ -21,37 +21,37 @@ public class ApplicationUserDetails extends User implements UserDetails {
 	
 	@Override
 	public Collection<GrantedAuthority> getAuthorities() {
-		return getAuthorities();
+		return super.getAuthorities();
 	}
 
 	@Override
 	public String getUsername() {
-		return getUsername();
+		return super.getUsername();
 	}
 	
 	@Override
 	public String getPassword() {
-		return getPassword();
+		return super.getPassword();
 	}
 
 	@Override
 	public boolean isAccountNonExpired() {
-		return isAccountNonExpired();
+		return super.isAccountNonExpired();
 	}
 
 	@Override
 	public boolean isAccountNonLocked() {
-		return isAccountNonLocked();
+		return super.isAccountNonLocked();
 	}
 
 	@Override
 	public boolean isCredentialsNonExpired() {
-		return isCredentialsNonExpired();
+		return super.isCredentialsNonExpired();
 	}
 
 	@Override
 	public boolean isEnabled() {
-		return isEnabled();
+		return super.isEnabled();
 	}
 
 }

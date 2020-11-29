@@ -18,9 +18,14 @@ import com.google.common.collect.Lists;
 @Repository("fakeDao")
 public class FakeApplicationUserDaoImpl implements ApplicationUserDetailsDao {
 
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	private final PasswordEncoder passwordEncoder;
 	
+	@Autowired
+	public FakeApplicationUserDaoImpl(PasswordEncoder passwordEncoder) {
+		super();
+		this.passwordEncoder = passwordEncoder;
+	}
+
 	@Override
 	public Optional<ApplicationUserDetails> findUserDetailsByUsername(String username) {
 		return getApplicationUserDetails()
@@ -31,22 +36,31 @@ public class FakeApplicationUserDaoImpl implements ApplicationUserDetailsDao {
 
 	private List<ApplicationUserDetails> getApplicationUserDetails() {
 		 
-		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		authorities.add(new SimpleGrantedAuthority("ROLES_" + ApplicationRole.ADMIN.name()));
+//		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+//		authorities.add(new SimpleGrantedAuthority("ROLE_" + ApplicationRole.ADMIN.name()));
 		
+		ApplicationUserDetails admin = new ApplicationUserDetails(
+				"admin",
+				passwordEncoder.encode("admin"),
+				true,
+				true,
+				true,
+				true,
+				ApplicationRole.ADMIN.getGrantedAuthorities()
+				);
 		
-		ApplicationUserDetails appUserDetails = new ApplicationUserDetails(
-				"Joss",
-				passwordEncoder.encode("joss"),
+		ApplicationUserDetails user = new ApplicationUserDetails(
+				"user",
+				passwordEncoder.encode("user"),
 				true,
 				true,
 				true,
 				true,
-				authorities
+				ApplicationRole.USER.getGrantedAuthorities()
 				);
 		
 		List<ApplicationUserDetails> userDetails = Lists.newArrayList(
-				appUserDetails
+				admin, user
 				);
 		
 		return userDetails;

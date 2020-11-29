@@ -1,6 +1,7 @@
 package com.douineau.testspringboot.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -9,7 +10,11 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import com.douineau.testspringboot.security.enums.ApplicationPermission;
 import com.douineau.testspringboot.security.enums.ApplicationRole;
@@ -85,6 +90,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		auth.authenticationProvider(daoAuthProvider());
 	}
 	
+	@Bean
 	public DaoAuthenticationProvider daoAuthProvider() {
 		DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
 		daoAuthProvider.setPasswordEncoder(passwordEncoder);
@@ -92,20 +98,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		return daoAuthProvider;
 	}
 	
+//	@Bean
 //	@Override
 //	protected UserDetailsService userDetailsService() {
 //		
 //		UserDetails admin = User.builder()
 //				.username("admin")
-//				.password(getPasswordEncoder().encode("admin"))
-//				.roles(ApplicationRole.ADMIN.name()) // ROLE_ADMIN
+//				.password(passwordEncoder.encode("admin"))
+//				.roles(ApplicationRole.ADMIN.name()) // ROLES_ADMIN
 //				.authorities(ApplicationRole.ADMIN.getGrantedAuthorities())
 //				.build();
 //		
 //		UserDetails user = User.builder()
 //				.username("user")
-//				.password(getPasswordEncoder().encode("user"))
-//				.roles(ApplicationRole.USER.name()) // ROLE_ADMIN
+//				.password(passwordEncoder.encode("user"))
+//				.roles(ApplicationRole.USER.name()) // ROLES_USER
 //				.authorities(ApplicationRole.USER.getGrantedAuthorities())
 //				.build();
 //		

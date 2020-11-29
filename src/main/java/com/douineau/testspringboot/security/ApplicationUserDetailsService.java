@@ -17,14 +17,15 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 //	@Autowired
 //	private UserDao repo;
 	
-	@Autowired
-	@Qualifier("fakeDao")
+//	@Autowired
+//	@Qualifier("fakeDao")
 	private ApplicationUserDetailsDao auddRepo;
 
-//	public ApplicationUserDetailsService(ApplicationUserDetailsDao auddRepo) {
-//		super();
-//		this.auddRepo = auddRepo;
-//	}
+	@Autowired
+	public ApplicationUserDetailsService(@Qualifier("fakeDao") ApplicationUserDetailsDao auddRepo) {
+		super();
+		this.auddRepo = auddRepo;
+	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
