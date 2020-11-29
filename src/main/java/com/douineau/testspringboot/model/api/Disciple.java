@@ -1,10 +1,12 @@
-package com.douineau.testspringboot.model;
+package com.douineau.testspringboot.model.api;
 
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+
+import com.douineau.testspringboot.model.AbstractEntity;
 
 @Entity
 public class Disciple extends AbstractEntity {

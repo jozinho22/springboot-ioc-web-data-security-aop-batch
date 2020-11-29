@@ -2,31 +2,33 @@ package com.douineau.testspringboot.model.security;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 
 import com.douineau.testspringboot.model.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Authority extends AbstractEntity {
+public class Role extends AbstractEntity {
 
-	private String role;
+	private String name;
 
-	@ManyToMany(mappedBy = "authorities")
+	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private List<User> users;
 
-	public Authority() {
+	public Role() {
 		super();
 	}
 
-	public String getRole() {
-		return role;
+	public String getName() {
+		return name;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public List<User> getUsers() {
@@ -39,7 +41,7 @@ public class Authority extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Authority [role=" + role + ", users=" + users + "]";
+		return "Role [name=" + name + ", users=" + users + "]";
 	}
 
 }

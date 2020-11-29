@@ -1,12 +1,13 @@
-package com.douineau.testspringboot.service;
+package com.douineau.testspringboot.service.api;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.douineau.testspringboot.dao.TechniqueDao;
-import com.douineau.testspringboot.model.Technique;
+import com.douineau.testspringboot.dao.api.TechniqueDao;
+import com.douineau.testspringboot.model.api.Technique;
+import com.douineau.testspringboot.service.GenericService;
 
 @Service
 public class TechniqueService implements GenericService<Technique> {

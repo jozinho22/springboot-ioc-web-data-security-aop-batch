@@ -11,7 +11,7 @@ import com.douineau.testspringboot.model.security.User;
 import com.douineau.testspringboot.service.security.UserService;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("admin/users")
 public class UserController implements GenericController<User>  {
 	
 	@Autowired

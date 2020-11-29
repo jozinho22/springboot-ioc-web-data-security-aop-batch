@@ -1,6 +1,8 @@
-package com.douineau.testspringboot.model;
+package com.douineau.testspringboot.model.api;
 
 import javax.persistence.Entity;
+
+import com.douineau.testspringboot.model.AbstractEntity;
 
 @Entity
 public class Technique extends AbstractEntity {

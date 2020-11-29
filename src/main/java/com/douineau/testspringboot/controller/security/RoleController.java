@@ -7,25 +7,25 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.douineau.testspringboot.controller.GenericController;
-import com.douineau.testspringboot.model.security.Authority;
-import com.douineau.testspringboot.service.security.AuthorityService;
+import com.douineau.testspringboot.model.security.Role;
+import com.douineau.testspringboot.service.security.RoleService;
 
 @RestController
-@RequestMapping("/authorities")
-public class AuthorityController implements GenericController<Authority>  {
+@RequestMapping("admin/roles")
+public class RoleController implements GenericController<Role>  {
 	
 	@Autowired
-	private AuthorityService service;
+	private RoleService service;
 
 	@Override
-	public List<Authority> getAllObjects() {
+	public List<Role> getAllObjects() {
 		return service.getAllObjects();
 	}
 
 	@Override
-	public String addObjects(List<Authority> objects) {
+	public String addObjects(List<Role> objects) {
 		service.addObjects(objects);;
-		return  "Authorities insérées";
+		return  "Roles insérés";
 	}
 
 	

@@ -5,23 +5,23 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.douineau.testspringboot.dao.security.UserDao;
-import com.douineau.testspringboot.model.security.User;
+import com.douineau.testspringboot.dao.security.RoleDao;
+import com.douineau.testspringboot.model.security.Role;
 import com.douineau.testspringboot.service.GenericService;
 
 @Service
-public class UserService implements GenericService<User> {
+public class RoleService implements GenericService<Role> {
 	
 	@Autowired
-	private UserDao repo;
+	private RoleDao repo;
 
 	@Override
-	public List<User> getAllObjects() {
-		return (List<User>) repo.findAll();
+	public List<Role> getAllObjects() {
+		return (List<Role>) repo.findAll();
 	}
 
 	@Override
-	public void addObjects(List<User> objects) {
+	public void addObjects(List<Role> objects) {
 		repo.saveAll(objects);
 	}
 

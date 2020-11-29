@@ -1,4 +1,4 @@
-package com.douineau.testspringboot.controller;
+package com.douineau.testspringboot.controller.api;
 
 import java.util.List;
 
@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.douineau.testspringboot.model.Technique;
-import com.douineau.testspringboot.service.TechniqueService;
+import com.douineau.testspringboot.controller.GenericController;
+import com.douineau.testspringboot.model.api.Technique;
+import com.douineau.testspringboot.service.api.TechniqueService;
 
 @RestController
-@RequestMapping("/techniques")
+@RequestMapping("api/techniques")
 public class TechniqueController implements GenericController<Technique>  {
 	
 	@Autowired
