@@ -16,6 +16,11 @@ public class RoleService implements GenericService<Role> {
 	private RoleDao repo;
 
 	@Override
+	public Role getObject(Integer id) {
+		return repo.findById(id).get();
+	}
+	
+	@Override
 	public List<Role> getAllObjects() {
 		return (List<Role>) repo.findAll();
 	}

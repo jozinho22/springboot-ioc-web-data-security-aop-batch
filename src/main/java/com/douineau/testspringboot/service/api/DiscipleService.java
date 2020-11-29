@@ -16,6 +16,11 @@ public class DiscipleService implements GenericService<Disciple> {
 	private DiscipleDao repo;
 
 	@Override
+	public Disciple getObject(Integer id) {
+		return repo.findById(id).get();
+	}
+	
+	@Override
 	public List<Disciple> getAllObjects() {
 		return (List<Disciple>) repo.findAll();
 	}
@@ -24,5 +29,4 @@ public class DiscipleService implements GenericService<Disciple> {
 	public void addObjects(List<Disciple> objects) {
 		repo.saveAll(objects);
 	}
-
 }

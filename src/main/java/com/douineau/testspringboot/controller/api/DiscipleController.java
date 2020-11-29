@@ -18,6 +18,11 @@ public class DiscipleController implements GenericController<Disciple> {
 	private DiscipleService service;
 
 	@Override
+	public Disciple getObject(Integer id) {
+		return service.getObject(id);
+	}
+	
+	@Override
 	public List<Disciple> getAllObjects() {
 		return service.getAllObjects();
 	}
@@ -27,5 +32,7 @@ public class DiscipleController implements GenericController<Disciple> {
 		service.addObjects(objects);
 		return "Disciples insérées";
 	}
+
+
 
 }

@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public interface GenericService<T> {
 
-	public List<T> getAllObjects();
+	T getObject(Integer id); 
+	
+    List<T> getAllObjects();
 
-	public void addObjects(List<T> objects);
+	void addObjects(List<T> objects);
 
 }

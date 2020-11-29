@@ -18,6 +18,11 @@ public class TechniqueController implements GenericController<Technique>  {
 	private TechniqueService service;
 
 	@Override
+	public Technique getObject(Integer id) {
+		return service.getObject(id);
+	}
+	
+	@Override
 	public List<Technique> getAllObjects() {
 		return service.getAllObjects();
 	}

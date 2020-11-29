@@ -16,6 +16,11 @@ public class TechniqueService implements GenericService<Technique> {
 	private TechniqueDao repo;
 
 	@Override
+	public Technique getObject(Integer id) {
+		return repo.findById(id).get();
+	}
+	
+	@Override
 	public List<Technique> getAllObjects() {
 		return (List<Technique>) repo.findAll();
 	}

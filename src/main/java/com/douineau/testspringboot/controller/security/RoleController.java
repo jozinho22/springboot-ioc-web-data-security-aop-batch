@@ -16,7 +16,12 @@ public class RoleController implements GenericController<Role>  {
 	
 	@Autowired
 	private RoleService service;
-
+	
+	@Override
+	public Role getObject(Integer id) {
+		return service.getObject(id);
+	}
+	
 	@Override
 	public List<Role> getAllObjects() {
 		return service.getAllObjects();
@@ -27,7 +32,5 @@ public class RoleController implements GenericController<Role>  {
 		service.addObjects(objects);;
 		return  "Roles insérés";
 	}
-
-	
 	
 }

@@ -12,12 +12,10 @@ import javax.persistence.ManyToMany;
 import org.hibernate.annotations.ColumnDefault;
 
 import com.douineau.testspringboot.model.AbstractEntity;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class User extends AbstractEntity {
 
-	private static final long serialVersionUID = 5933035155297298416L;
 	private String name;
 	private String password;
 	@ColumnDefault(value = "0")

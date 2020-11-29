@@ -1,4 +1,4 @@
-package com.douineau.testspringboot.security;
+package com.douineau.testspringboot.security.enums;
 
 public enum ApplicationPermission {
 	

@@ -16,6 +16,11 @@ public class UserService implements GenericService<User> {
 	private UserDao repo;
 
 	@Override
+	public User getObject(Integer id) {
+		return repo.findById(id).get();
+	}
+	
+	@Override
 	public List<User> getAllObjects() {
 		return (List<User>) repo.findAll();
 	}
@@ -24,6 +29,5 @@ public class UserService implements GenericService<User> {
 	public void addObjects(List<User> objects) {
 		repo.saveAll(objects);
 	}
-
 
 }
