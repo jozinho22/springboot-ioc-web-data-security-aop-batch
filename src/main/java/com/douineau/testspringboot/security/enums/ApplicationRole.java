@@ -9,8 +9,8 @@ import com.google.common.collect.Sets;
 
 public enum ApplicationRole {
 
-	ADMIN(Sets.newHashSet(ApplicationPermission.WRITE)), 
-	USER(Sets.newHashSet(ApplicationPermission.READ, ApplicationPermission.WRITE));
+	ADMIN(Sets.newHashSet(ApplicationPermission.WRITE, ApplicationPermission.READ)), 
+	USER(Sets.newHashSet(ApplicationPermission.READ));
 	
 	private Set<ApplicationPermission> permissions;
 
@@ -23,9 +23,10 @@ public enum ApplicationRole {
 	}
 	
 	public Set<SimpleGrantedAuthority> getGrantedAuthorities() {
+		
 		 Set<SimpleGrantedAuthority> permissions = getPermissions().stream()
-			.map(permission -> new SimpleGrantedAuthority(permission.name()))
-			.collect(Collectors.toSet());
+				 	.map(permission -> new SimpleGrantedAuthority(permission.name()))
+				 	.collect(Collectors.toSet());
 		 
 		 permissions.add(new SimpleGrantedAuthority("ROLE_" + this.name()));
 		 

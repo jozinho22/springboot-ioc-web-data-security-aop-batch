@@ -1,6 +1,7 @@
 package com.douineau.testspringboot.model.security;
 
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -16,7 +17,8 @@ import com.douineau.testspringboot.model.AbstractEntity;
 @Entity
 public class User extends AbstractEntity {
 
-	private String name;
+	// inherited from superclass...
+	// private String name;
 	private String password;
 	@ColumnDefault(value = "0")
 	private boolean isAccountNonExpired;
@@ -26,26 +28,45 @@ public class User extends AbstractEntity {
 	private boolean isCredentialsNonExpired;
 	@ColumnDefault(value = "0")
 	private boolean isEnabled;
-	
+
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(
-			name = "users_roles",
-			joinColumns = @JoinColumn(name = "user_id"), 
-			inverseJoinColumns = @JoinColumn(name = "role_id")
-			)
-	private List<Role> roles; 
-	
+	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Set<Role> roles;
+
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinTable(name = "users_permissions", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
+	private Set<Permission> permissions;
+
 	public User() {
+	}
+	
+	public User(
+			String name,
+			String password, 
+			boolean isAccountNonExpired, 
+			boolean isAccountNonLocked,
+			boolean isCredentialsNonExpired, 
+			boolean isEnabled, 
+			HashSet<Role> roles, 
+			HashSet<Permission> permissions) {
 		super();
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
 		this.name = name;
+		this.password = password;
+		this.isAccountNonExpired = isAccountNonExpired;
+		this.isAccountNonLocked = isAccountNonLocked;
+		this.isCredentialsNonExpired = isCredentialsNonExpired;
+		this.isEnabled = isEnabled;
+		this.roles = roles;
+		this.permissions = permissions;
 	}
+
+//	public String getName() {
+//		return name;
+//	}
+//
+//	public void setName(String name) {
+//		this.name = name;
+//	}
 
 	public String getPassword() {
 		return password;
@@ -54,7 +75,6 @@ public class User extends AbstractEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
 
 	public boolean isAccountNonExpired() {
 		return isAccountNonExpired;
@@ -88,19 +108,27 @@ public class User extends AbstractEntity {
 		this.isEnabled = isEnabled;
 	}
 
-	public List<Role> getRoles() {
+	public Set<Role> getRoles() {
 		return roles;
 	}
 
-	public void setRoles(List<Role> roles) {
+	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
+	}
+
+	public Set<Permission> getPermissions() {
+		return permissions;
+	}
+
+	public void setPermissions(Set<Permission> permissions) {
+		this.permissions = permissions;
 	}
 
 	@Override
 	public String toString() {
-		return "User [name=" + name + ", password=" + password + ", isAccountNonExpired=" + isAccountNonExpired
+		return super.toString() + " - [password=" + password + ", isAccountNonExpired=" + isAccountNonExpired
 				+ ", isAccountNonLocked=" + isAccountNonLocked + ", isCredentialsNonExpired=" + isCredentialsNonExpired
-				+ ", isEnabled=" + isEnabled + ", roles=" + roles + "]";
+				+ ", isEnabled=" + isEnabled + ", roles=" + roles + ", permissions=" + permissions + "]";
 	}
 
 }

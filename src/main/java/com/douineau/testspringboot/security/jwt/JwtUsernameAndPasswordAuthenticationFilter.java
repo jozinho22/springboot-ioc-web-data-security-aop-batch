@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -25,6 +26,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
 	private final JwtConfig jwtConfig;
 	
+	@Autowired
 	public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authenticationManager,
 			JwtConfig jwtConfig) {
 		super();
@@ -37,8 +39,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 			throws AuthenticationException {
 
 		System.out.println("Tentative d'authentification");
-		System.out.println("Requête : " + request.getContextPath()
-				);
+		System.out.println("Requête : " + request.getRequestURI());
 		Authentication authentication = null;
 		try {
 			UsernamePasswordAuthenticationRequest upaRequest = new ObjectMapper().readValue(request.getInputStream(),

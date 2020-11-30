@@ -22,4 +22,6 @@ INSERT INTO disciple (name) values("jozinho");
 INSERT INTO user (name, password, is_account_non_expired, is_account_non_locked, is_credentials_non_expired, is_enabled) VALUES ("jozinho", "1234", 1, 1, 1, 1);
 INSERT INTO authority (role) VALUES ("ADMIN");
 INSERT INTO authority (role) VALUES ("USER");
-INSERT INTO users_authorities VALUES(1,1);
+INSERT INTO users_roles VALUES(1,1);
+INSERT INTO users_roles VALUES(12,1);
+

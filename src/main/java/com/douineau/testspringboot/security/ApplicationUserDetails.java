@@ -13,8 +13,13 @@ public class ApplicationUserDetails extends User implements UserDetails {
 	 */
 	private static final long serialVersionUID = -6881969431236214232L;
 	
-	public ApplicationUserDetails(String username, String password, boolean enabled, boolean accountNonExpired,
-			boolean credentialsNonExpired, boolean accountNonLocked,
+	public ApplicationUserDetails(
+			String username, 
+			String password, 
+			boolean accountNonExpired,
+			boolean accountNonLocked,
+			boolean credentialsNonExpired, 
+			boolean enabled, 
 			Collection<? extends GrantedAuthority> authorities) {
 		super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 	}

@@ -1,16 +1,17 @@
 package com.douineau.testspringboot.service.security;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.RoleDao;
 import com.douineau.testspringboot.model.security.Role;
-import com.douineau.testspringboot.service.GenericService;
+import com.douineau.testspringboot.service.GenericAdminService;
 
 @Service
-public class RoleService implements GenericService<Role> {
+public class RoleService implements GenericAdminService<Role> {
 	
 	@Autowired
 	private RoleDao repo;
@@ -26,7 +27,7 @@ public class RoleService implements GenericService<Role> {
 	}
 
 	@Override
-	public void addObjects(List<Role> objects) {
+	public void addObjects(Set<Role> objects) {
 		repo.saveAll(objects);
 	}
 

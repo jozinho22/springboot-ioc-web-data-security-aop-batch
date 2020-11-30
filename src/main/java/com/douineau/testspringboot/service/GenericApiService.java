@@ -6,10 +6,8 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface GenericService<T> {
+public interface GenericApiService<T> extends GenericService<T> {
 
-	T getObject(Integer id); 
-	
-	List<T> getAllObjects();
+	void addObjects(List<T> objects);
 
 }

@@ -5,28 +5,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.douineau.testspringboot.dao.api.TechniqueDao;
-import com.douineau.testspringboot.model.api.Technique;
-import com.douineau.testspringboot.service.GenericService;
+import com.douineau.testspringboot.dao.api.BookDao;
+import com.douineau.testspringboot.model.api.Book;
+import com.douineau.testspringboot.service.GenericApiService;
 
 @Service
-public class TechniqueService implements GenericService<Technique> {
+public class BookService implements GenericApiService<Book> {
 	
 	@Autowired 
-	private TechniqueDao repo;
+	private BookDao repo;
 
 	@Override
-	public Technique getObject(Integer id) {
+	public Book getObject(Integer id) {
 		return repo.findById(id).get();
 	}
 	
 	@Override
-	public List<Technique> getAllObjects() {
-		return (List<Technique>) repo.findAll();
+	public List<Book> getAllObjects() {
+		return (List<Book>) repo.findAll();
 	}
 
 	@Override
-	public void addObjects(List<Technique> objects) {
+	public void addObjects(List<Book> objects) {
 		repo.saveAll(objects);
 	}
 	

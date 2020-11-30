@@ -11,20 +11,21 @@ import com.douineau.testspringboot.model.AbstractEntity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Role extends AbstractEntity {
-
-	@ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+public class Permission extends AbstractEntity {
+	
+	@ManyToMany(mappedBy = "permissions", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Set<User> users;
-
-	public Role() {
+	
+	public Permission() {
 		super();
 	}
-	
-	public Role(String name) {
+
+	public Permission(String name) {
+		super();
 		this.name = name;
 	}
-
+	
 	public Set<User> getUsers() {
 		return users;
 	}
@@ -37,5 +38,6 @@ public class Role extends AbstractEntity {
 	public String toString() {
 		return super.toString() + " - [users=" + users + "]";
 	}
+
 
 }

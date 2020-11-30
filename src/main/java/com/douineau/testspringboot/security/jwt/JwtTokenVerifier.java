@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,6 +29,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter{
 
 	private final JwtConfig jwtConfig;
 	
+	@Autowired
 	public JwtTokenVerifier(JwtConfig jwtConfig) {
 		super();
 		this.jwtConfig = jwtConfig;
@@ -37,7 +39,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
-		System.out.println("Requête depuis un client : " + request.getContextPath());
+		System.out.println("Requête depuis un client : " + request.getRequestURI());
 		
 		String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 		if(Strings.isNullOrEmpty(authorizationHeader) 

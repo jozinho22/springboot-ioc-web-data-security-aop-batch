@@ -1,27 +1,23 @@
-package com.douineau.testspringboot.dao;
+package com.douineau.testspringboot.dao.security;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import com.douineau.testspringboot.dao.security.ApplicationUserDetailsDao;
 import com.douineau.testspringboot.security.ApplicationUserDetails;
 import com.douineau.testspringboot.security.enums.ApplicationRole;
 import com.google.common.collect.Lists;
 
 @Repository("fakeDao")
-public class FakeApplicationUserDaoImpl implements ApplicationUserDetailsDao {
+public class FakeApplicationUserDetailsDaoImpl implements ApplicationUserDetailsDao {
 
 	private final PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public FakeApplicationUserDaoImpl(PasswordEncoder passwordEncoder) {
+	public FakeApplicationUserDetailsDaoImpl(PasswordEncoder passwordEncoder) {
 		super();
 		this.passwordEncoder = passwordEncoder;
 	}

@@ -1,4 +1,4 @@
-package com.douineau.testspringboot.security;
+package com.douineau.testspringboot.service.security;
 
 import java.util.Optional;
 
@@ -10,28 +10,30 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.ApplicationUserDetailsDao;
+import com.douineau.testspringboot.security.ApplicationUserDetails;
 
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
 	
-//	@Autowired
-//	private UserDao repo;
-	
-//	@Autowired
-//	@Qualifier("fakeDao")
-	private ApplicationUserDetailsDao auddRepo;
+	private ApplicationUserDetailsDao repo;
 
+//	@Autowired
+//	public ApplicationUserDetailsService(@Qualifier("fakeDao") ApplicationUserDetailsDao auddRepo) {
+//		super();
+//		this.repo = auddRepo;
+//	}
+	
 	@Autowired
 	public ApplicationUserDetailsService(@Qualifier("fakeDao") ApplicationUserDetailsDao auddRepo) {
 		super();
-		this.auddRepo = auddRepo;
+		this.repo = auddRepo;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 //		Optional<User> user = repo.findByName(username);
-		Optional<ApplicationUserDetails> appUserDetails = auddRepo.findUserDetailsByUsername(username);
+		Optional<ApplicationUserDetails> appUserDetails = repo.findUserDetailsByUsername(username);
 		if(!appUserDetails.isPresent()) {
 			throw new UsernameNotFoundException("Ce username n'existe pas : " + username);
 		}

@@ -10,17 +10,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import com.douineau.testspringboot.security.enums.ApplicationPermission;
 import com.douineau.testspringboot.security.enums.ApplicationRole;
 import com.douineau.testspringboot.security.jwt.JwtConfig;
 import com.douineau.testspringboot.security.jwt.JwtTokenVerifier;
 import com.douineau.testspringboot.security.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import com.douineau.testspringboot.service.security.ApplicationUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -42,10 +39,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		// code to test
-//		http.csrf().disable()
-//			.authorizeRequests().anyRequest().permitAll();
 			
 		http.csrf().disable()
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -53,13 +46,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			
 			.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig))
 			.addFilterAfter(new JwtTokenVerifier(jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+			
 			.authorizeRequests()
+			
 			.antMatchers("/").permitAll()
+			.antMatchers("/login").permitAll()
+			
 			.antMatchers(HttpMethod.GET, "/admin/authorities", "/admin/users").hasRole(ApplicationRole.ADMIN.name())
+			.antMatchers(HttpMethod.POST, "/admin/authorities", "/admin/users").hasRole(ApplicationRole.ADMIN.name())
+
 			.antMatchers(HttpMethod.GET, "/api/**").hasAuthority(ApplicationPermission.READ.name())
 			.antMatchers(HttpMethod.POST, "/api/**").hasAuthority(ApplicationPermission.WRITE.name())
-			.anyRequest().authenticated()
-			;
+			
+			.anyRequest().authenticated();
 		
 // No need anaymore with JWT...
 //			.and()
