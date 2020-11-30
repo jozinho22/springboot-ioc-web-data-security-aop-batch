@@ -37,6 +37,8 @@ public class JwtTokenVerifier extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
+		System.out.println("Requête depuis un client : " + request.getContextPath());
+		
 		String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 		if(Strings.isNullOrEmpty(authorizationHeader) 
 				|| !authorizationHeader.startsWith(jwtConfig.getTokenPrefix())) {
@@ -65,6 +67,9 @@ public class JwtTokenVerifier extends OncePerRequestFilter{
 					username,
 					null,
 					simpleGrantedAuthorities);
+			
+			if(authentication.isAuthenticated())
+				System.out.println("Bien authentifié sous le username " + username);
 			
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			filterChain.doFilter(request, response);

@@ -9,7 +9,7 @@ import com.google.common.collect.Sets;
 
 public enum ApplicationRole {
 
-	ADMIN(Sets.newHashSet(ApplicationPermission.READ)), 
+	ADMIN(Sets.newHashSet(ApplicationPermission.WRITE)), 
 	USER(Sets.newHashSet(ApplicationPermission.READ, ApplicationPermission.WRITE));
 	
 	private Set<ApplicationPermission> permissions;

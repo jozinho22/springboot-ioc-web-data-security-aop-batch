@@ -36,6 +36,9 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
 
+		System.out.println("Tentative d'authentification");
+		System.out.println("Requête : " + request.getContextPath()
+				);
 		Authentication authentication = null;
 		try {
 			UsernamePasswordAuthenticationRequest upaRequest = new ObjectMapper().readValue(request.getInputStream(),
@@ -58,6 +61,9 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 			FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		
+		System.out.println("------------------------");
+		System.out.println("Authentification réussie");
+
 		String token = Jwts.builder()
 			.setSubject(authResult.getName())
 			.claim(
@@ -73,6 +79,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 		response.setHeader(
 				jwtConfig.getAuthorizationHeader(), 
 				jwtConfig.getTokenPrefix() + token);	
+		
+		System.out.println("Token envoyé dans le Header : " + token);
 	}
 
 }
