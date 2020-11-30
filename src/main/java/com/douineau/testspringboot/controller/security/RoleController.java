@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.douineau.testspringboot.controller.GenericAdminController;
+import com.douineau.testspringboot.controller.IGenericAdminController;
 import com.douineau.testspringboot.model.security.Role;
 import com.douineau.testspringboot.service.security.RoleService;
 
 @RestController
 @RequestMapping("admin/roles")
-public class RoleController implements GenericAdminController<Role>  {
+public class RoleController implements IGenericAdminController<Role>  {
 	
 	@Autowired
 	private RoleService service;

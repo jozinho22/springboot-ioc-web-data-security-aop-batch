@@ -7,13 +7,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.douineau.testspringboot.controller.GenericAdminController;
+import com.douineau.testspringboot.controller.IGenericAdminController;
 import com.douineau.testspringboot.model.security.Permission;
 import com.douineau.testspringboot.service.security.PermissionService;
 
 @RestController
 @RequestMapping("admin/permissions")
-public class PermissionController implements GenericAdminController<Permission>  {
+public class PermissionController implements IGenericAdminController<Permission>  {
 	
 	@Autowired
 	private PermissionService service;

@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.PermissionDao;
 import com.douineau.testspringboot.model.security.Permission;
-import com.douineau.testspringboot.service.GenericAdminService;
+import com.douineau.testspringboot.service.IGenericAdminService;
 
 @Service
-public class PermissionService implements GenericAdminService<Permission> {
+public class PermissionService implements IGenericAdminService<Permission> {
 	
 	@Autowired
 	private PermissionDao repo;

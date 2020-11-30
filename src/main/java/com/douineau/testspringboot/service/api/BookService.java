@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.api.BookDao;
 import com.douineau.testspringboot.model.api.Book;
-import com.douineau.testspringboot.service.GenericApiService;
+import com.douineau.testspringboot.service.IGenericApiService;
 
 @Service
-public class BookService implements GenericApiService<Book> {
+public class BookService implements IGenericApiService<Book> {
 	
 	@Autowired 
 	private BookDao repo;

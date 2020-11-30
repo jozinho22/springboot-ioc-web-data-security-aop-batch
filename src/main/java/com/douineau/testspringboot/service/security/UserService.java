@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.UserDao;
 import com.douineau.testspringboot.model.security.User;
-import com.douineau.testspringboot.service.GenericAdminService;
+import com.douineau.testspringboot.service.IGenericAdminService;
 
 @Service
-public class UserService implements GenericAdminService<User> {
+public class UserService implements IGenericAdminService<User> {
 	
 	@Autowired
 	private UserDao repo;

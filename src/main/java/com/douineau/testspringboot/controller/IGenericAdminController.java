@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
-public interface GenericAdminController<T> extends GenericController<T> {
+public interface IGenericAdminController<T> extends IGenericController<T> {
 	
 	@PostMapping
 	public String addObjects(@RequestBody Set<T> objects);

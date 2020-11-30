@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.RoleDao;
 import com.douineau.testspringboot.model.security.Role;
-import com.douineau.testspringboot.service.GenericAdminService;
+import com.douineau.testspringboot.service.IGenericAdminService;
 
 @Service
-public class RoleService implements GenericAdminService<Role> {
+public class RoleService implements IGenericAdminService<Role> {
 	
 	@Autowired
 	private RoleDao repo;

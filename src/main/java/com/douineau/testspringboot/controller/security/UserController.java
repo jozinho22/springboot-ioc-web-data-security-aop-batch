@@ -8,13 +8,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.douineau.testspringboot.controller.GenericAdminController;
+import com.douineau.testspringboot.controller.IGenericAdminController;
 import com.douineau.testspringboot.model.security.User;
 import com.douineau.testspringboot.service.security.UserService;
 
 @RestController
 @RequestMapping("admin/users")
-public class UserController implements GenericAdminController<User>  {
+public class UserController implements IGenericAdminController<User>  {
 	
 	@Autowired
 	private UserService service;

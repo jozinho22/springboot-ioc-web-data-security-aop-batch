@@ -58,6 +58,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers(HttpMethod.GET, "/api/**").hasAuthority(ApplicationPermission.READ.name())
 			.antMatchers(HttpMethod.POST, "/api/**").hasAuthority(ApplicationPermission.WRITE.name())
 			
+			.antMatchers(HttpMethod.GET, "/generic-api/**").permitAll()
+			
 			.anyRequest().authenticated();
 		
 // No need anaymore with JWT...

@@ -39,7 +39,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		
-		System.out.println("Requête depuis un client : " + request.getRequestURI());
+		System.out.println("Requête depuis un client : : " + request.getMethod() + " - " +  request.getRequestURI());
 		
 		String authorizationHeader = request.getHeader(jwtConfig.getAuthorizationHeader());
 		if(Strings.isNullOrEmpty(authorizationHeader) 

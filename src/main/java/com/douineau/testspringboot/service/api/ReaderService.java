@@ -7,10 +7,10 @@ import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.api.ReaderDao;
 import com.douineau.testspringboot.model.api.Reader;
-import com.douineau.testspringboot.service.GenericApiService;
+import com.douineau.testspringboot.service.IGenericApiService;
 
 @Service
-public class ReaderService implements GenericApiService<Reader> {
+public class ReaderService implements IGenericApiService<Reader> {
 	
 	@Autowired 
 	private ReaderDao repo;

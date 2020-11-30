@@ -1,15 +1,12 @@
 package com.douineau.testspringboot.service;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
 @Service
-public interface GenericService<T> {
+public interface IGenericAdminService<T> extends IGenericService<T> {
 
-	T getObject(Integer id); 
-	
-	List<T> getAllObjects();
+	void addObjects(Set<T> objects);
 
 }
