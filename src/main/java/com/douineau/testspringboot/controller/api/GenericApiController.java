@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.douineau.testspringboot.controller.IGenericApiController;
-import com.douineau.testspringboot.service.api.GenericApiService;
+import com.douineau.testspringboot.service.IGenericApiService;
 
 public class GenericApiController<T> implements IGenericApiController<T> {
 
 	@Autowired
-	private GenericApiService<T> service;
+	protected IGenericApiService<T> service;
 
 	@Override
 	public T getObject(Integer id) {
@@ -24,10 +24,7 @@ public class GenericApiController<T> implements IGenericApiController<T> {
 
 	@Override
 	public String addObjects(List<T> objects) {
-		 service.addObjects(objects);
-		 return "Objets de type : " + objects.getClass().getName() + " bien insérés";
-		
+		return service.addObjects(objects);		
 	}
-	
 	
 }

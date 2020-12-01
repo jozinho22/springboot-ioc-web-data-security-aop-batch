@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.douineau.testspringboot.security.ApplicationUserDetails;
 
 @Repository
-public interface ApplicationUserDetailsDao {
+public interface IApplicationUserDetailsDao {
 
 	Optional<ApplicationUserDetails> findUserDetailsByUsername(String username);
 

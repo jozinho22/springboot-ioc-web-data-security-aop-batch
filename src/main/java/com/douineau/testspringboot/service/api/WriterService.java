@@ -6,19 +6,19 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.douineau.testspringboot.dao.api.IReaderDao;
-import com.douineau.testspringboot.model.api.Reader;
+import com.douineau.testspringboot.dao.api.IWriterDao;
+import com.douineau.testspringboot.model.api.Writer;
 import com.douineau.testspringboot.service.IGenericApiService;
 
 @Service
-public class ReaderService implements IGenericApiService<Reader> {
+public class WriterService implements IGenericApiService<Writer> {
 	
-	@Autowired 
-	private IReaderDao repo;
+	@Autowired
+	private IWriterDao repo;
 
 	@Override
-	public Reader getObject(Integer id) {
-		Optional<Reader> mayBe = repo.findById(id);
+	public Writer getObject(Integer id) {
+		Optional<Writer> mayBe = repo.findById(id);
 		if(mayBe.isPresent()) {
 			return mayBe.get();
 		} else {
@@ -27,13 +27,15 @@ public class ReaderService implements IGenericApiService<Reader> {
 	}
 	
 	@Override
-	public List<Reader> getAllObjects() {
-		return  (List<Reader>) repo.findAll();
+	public List<Writer> getAllObjects() {
+		return  (List<Writer>) repo.findAll();
 	}
 
 	@Override
-	public String addObjects(List<Reader> objects) {
+	public String addObjects(List<Writer> objects) {
 		repo.saveAll(objects);
 		return "Objets de type : " + objects.getClass().getTypeName() + " bien insérés";
 	}
+
 }
+

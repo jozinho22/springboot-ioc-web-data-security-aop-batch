@@ -12,5 +12,5 @@ public interface IGenericController<T> {
 	
 	@GetMapping
 	public List<T> getAllObjects();
-	
+
 }

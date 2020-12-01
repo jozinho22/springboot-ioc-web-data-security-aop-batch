@@ -12,12 +12,12 @@ import com.douineau.testspringboot.security.enums.ApplicationRole;
 import com.google.common.collect.Lists;
 
 @Repository("fakeDao")
-public class FakeApplicationUserDetailsDaoImpl implements ApplicationUserDetailsDao {
+public class ApplicationUserDetailsDaoFake implements IApplicationUserDetailsDao {
 
 	private final PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	public FakeApplicationUserDetailsDaoImpl(PasswordEncoder passwordEncoder) {
+	public ApplicationUserDetailsDaoFake(PasswordEncoder passwordEncoder) {
 		super();
 		this.passwordEncoder = passwordEncoder;
 	}

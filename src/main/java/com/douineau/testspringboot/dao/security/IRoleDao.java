@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.douineau.testspringboot.model.security.Role;
 
 @Repository
-public interface RoleDao extends CrudRepository<Role, Integer> {
+public interface IRoleDao extends CrudRepository<Role, Integer> {
 
 }

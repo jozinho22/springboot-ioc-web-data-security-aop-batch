@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.douineau.testspringboot.model.api.Writer;
 
 @RestController
-@RequestMapping("generic-api/writers")
+@RequestMapping("/api/writers")
 public class WriterController extends GenericApiController<Writer> {
 
 }

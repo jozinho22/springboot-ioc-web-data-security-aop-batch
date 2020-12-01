@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.douineau.testspringboot.model.security.User;
 
 @Repository
-public interface UserDao extends CrudRepository<User, Integer> {
+public interface IUserDao extends CrudRepository<User, Integer> {
 
 	Optional<User> findByName(String name);
 

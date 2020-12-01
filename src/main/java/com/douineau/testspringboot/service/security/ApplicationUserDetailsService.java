@@ -9,13 +9,13 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.douineau.testspringboot.dao.security.ApplicationUserDetailsDao;
+import com.douineau.testspringboot.dao.security.IApplicationUserDetailsDao;
 import com.douineau.testspringboot.security.ApplicationUserDetails;
 
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
 	
-	private ApplicationUserDetailsDao repo;
+	private IApplicationUserDetailsDao repo;
 
 //	@Autowired
 //	public ApplicationUserDetailsService(@Qualifier("fakeDao") ApplicationUserDetailsDao auddRepo) {
@@ -24,7 +24,7 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 //	}
 	
 	@Autowired
-	public ApplicationUserDetailsService(@Qualifier("fakeDao") ApplicationUserDetailsDao auddRepo) {
+	public ApplicationUserDetailsService(@Qualifier("fakeDao") IApplicationUserDetailsDao auddRepo) {
 		super();
 		this.repo = auddRepo;
 	}

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.douineau.testspringboot.model.security.Permission;
 
 @Repository
-public interface PermissionDao extends CrudRepository<Permission, Integer> {
+public interface IPermissionDao extends CrudRepository<Permission, Integer> {
 
 }

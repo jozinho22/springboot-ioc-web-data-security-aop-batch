@@ -15,14 +15,14 @@ import com.douineau.testspringboot.model.security.User;
 import com.douineau.testspringboot.security.ApplicationUserDetails;
 
 @Repository("realDao")
-public class RealApplicationUserDetailsDaoImpl implements ApplicationUserDetailsDao {
+public class ApplicationUserDetailsDaoReal implements IApplicationUserDetailsDao {
 
 	private final PasswordEncoder passwordEncoder;
-	private final UserDao repo;
+	private final IUserDao repo;
 	
 	@Autowired
-	public RealApplicationUserDetailsDaoImpl(PasswordEncoder passwordEncoder,
-			UserDao repo) {
+	public ApplicationUserDetailsDaoReal(PasswordEncoder passwordEncoder,
+			IUserDao repo) {
 		super();
 		this.passwordEncoder = passwordEncoder;
 		this.repo = repo;

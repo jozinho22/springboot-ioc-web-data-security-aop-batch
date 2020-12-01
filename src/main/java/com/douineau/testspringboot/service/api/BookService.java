@@ -1,41 +1,40 @@
 package com.douineau.testspringboot.service.api;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.douineau.testspringboot.dao.api.BookDao;
+import com.douineau.testspringboot.dao.api.IBookDao;
 import com.douineau.testspringboot.model.api.Book;
 import com.douineau.testspringboot.service.IGenericApiService;
 
 @Service
 public class BookService implements IGenericApiService<Book> {
 	
-	@Autowired 
-	private BookDao repo;
+	@Autowired
+	private IBookDao repo;
 
 	@Override
 	public Book getObject(Integer id) {
-		return repo.findById(id).get();
+		Optional<Book> mayBe = repo.findById(id);
+		if(mayBe.isPresent()) {
+			return mayBe.get();
+		} else {
+			return null;
+		}
 	}
 	
 	@Override
 	public List<Book> getAllObjects() {
-		return (List<Book>) repo.findAll();
+		return  (List<Book>) repo.findAll();
 	}
 
 	@Override
-	public void addObjects(List<Book> objects) {
+	public String addObjects(List<Book> objects) {
 		repo.saveAll(objects);
+		return "Objets de type : " + objects.getClass().getTypeName() + " bien insérés";
 	}
-	
-//	public List<Technique> getT {
-//		return (List<Technique>) repo.findAll();
-//	}
-//
-//	public void addLaptops(List<Technique> laptops) {
-//		repo.saveAll(laptops);
-//	}
 
 }
