@@ -60,13 +60,22 @@ public class User extends AbstractEntity {
 		this.permissions = permissions;
 	}
 
-//	public String getName() {
-//		return name;
-//	}
-//
-//	public void setName(String name) {
-//		this.name = name;
-//	}
+	public User(
+			String name,
+			String password, 
+			boolean isAccountNonExpired, 
+			boolean isAccountNonLocked,
+			boolean isCredentialsNonExpired, 
+			boolean isEnabled
+			) {
+		super();
+		this.name = name;
+		this.password = password;
+		this.isAccountNonExpired = isAccountNonExpired;
+		this.isAccountNonLocked = isAccountNonLocked;
+		this.isCredentialsNonExpired = isCredentialsNonExpired;
+		this.isEnabled = isEnabled;
+	}
 
 	public String getPassword() {
 		return password;

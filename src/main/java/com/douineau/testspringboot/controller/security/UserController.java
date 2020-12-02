@@ -7,11 +7,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.douineau.testspringboot.controller.GenericController;
 import com.douineau.testspringboot.model.security.User;
 
 @RestController
 @RequestMapping("admin/users")
-public class UserController extends GenericAdminController<User> {
+public class UserController extends GenericController<User> {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -22,9 +23,8 @@ public class UserController extends GenericAdminController<User> {
 		for(User user : objects) {
 			user.setPassword(passwordEncoder.encode(user.getPassword()));
 		}
-		service.addObjects(objects);
+		return service.addObjects(objects);
 		
-		return "User insérés avec encoding du password :";
 	}
 
 }

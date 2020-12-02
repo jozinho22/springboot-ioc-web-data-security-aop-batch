@@ -15,9 +15,9 @@ public abstract class AbstractEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@JsonIgnore
 	protected Integer id;
 	protected String name;
+	
 	@Transient
 	@JsonIgnore
 	protected LocalDateTime createdAt;

@@ -1,11 +1,16 @@
 package com.douineau.testspringboot.service;
 
 import java.util.List;
+import java.util.Set;
 
 public interface IGenericService<T> {
 		
-	public T getObject(Integer id);
+	T getObject(Integer id);
 	
-	public List<T> getAllObjects();
+	List<T> getAllObjects();
+	
+	String addObject(T object);
+	
+	String addObjects(Set<T> objects);
 
 }

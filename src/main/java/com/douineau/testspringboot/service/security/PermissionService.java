@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.IPermissionDao;
 import com.douineau.testspringboot.model.security.Permission;
-import com.douineau.testspringboot.service.IGenericAdminService;
+import com.douineau.testspringboot.service.IGenericService;
 
 @Service
-public class PermissionService implements IGenericAdminService<Permission> {
+public class PermissionService implements IGenericService<Permission> {
 	
 	@Autowired
 	private IPermissionDao repo;
@@ -36,6 +36,12 @@ public class PermissionService implements IGenericAdminService<Permission> {
 	public String addObjects(Set<Permission> objects) {
 		repo.saveAll(objects);
 		return "Objets de type : " + objects.getClass().getTypeName() + " bien insérés";
+	}
+
+	@Override
+	public String addObject(Permission object) {
+		repo.save(object);
+		return "Objet de type : " + object.getClass().getTypeName() + " bien inséré";
 	}
 
 }

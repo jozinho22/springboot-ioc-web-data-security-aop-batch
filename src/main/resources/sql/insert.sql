@@ -25,3 +25,7 @@ INSERT INTO authority (role) VALUES ("USER");
 INSERT INTO users_roles VALUES(1,1);
 INSERT INTO users_roles VALUES(12,1);
 
+TRUNCATE TABLE role;
+TRUNCATE TABLE permission;
+TRUNCATE TABLE user;
+

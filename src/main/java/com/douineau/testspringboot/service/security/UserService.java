@@ -5,21 +5,25 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.IUserDao;
 import com.douineau.testspringboot.model.security.User;
-import com.douineau.testspringboot.service.IGenericAdminService;
+import com.douineau.testspringboot.service.IGenericService;
 
 @Service
-public class UserService implements IGenericAdminService<User> {
+public class UserService implements IGenericService<User> {
 	
 	@Autowired
-	private IUserDao repo;
+	private IUserDao userRepo;
+	
+	@Autowired
+	private PasswordEncoder passworEncoder;
 
 	@Override
 	public User getObject(Integer id) {
-		Optional<User> mayBe = repo.findById(id);
+		Optional<User> mayBe = userRepo.findById(id);
 		if(mayBe.isPresent()) {
 			return mayBe.get();
 		} else {
@@ -29,13 +33,38 @@ public class UserService implements IGenericAdminService<User> {
 	
 	@Override
 	public List<User> getAllObjects() {
-		return  (List<User>) repo.findAll();
+		return  (List<User>) userRepo.findAll();
 	}
 
 	@Override
 	public String addObjects(Set<User> objects) {
-		repo.saveAll(objects);
-		return "Objets de type : " + objects.getClass().getTypeName() + " bien insérés";
+		
+		for(User user : objects) {
+			addObject(user);
+		}
+		
+		return "Objets de type : " + objects.getClass().getName() + " bien insérés";
+	}
+
+	@Override
+	public String addObject(User object) {
+		
+		User u = new User(
+				object.getName(),
+				passworEncoder.encode(object.getPassword()),
+				true,
+				true,
+				true,
+				true
+				);
+	
+		User uToUpdateRolesAndPerms = userRepo.save(u);
+		
+		uToUpdateRolesAndPerms.setRoles(object.getRoles());
+		uToUpdateRolesAndPerms.setPermissions(object.getPermissions());
+		userRepo.save(uToUpdateRolesAndPerms);
+		
+		return "Objet de type : " + object.getClass().getName() + " bien inséré";
 	}
 
 }

@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 
 import com.douineau.testspringboot.dao.security.IRoleDao;
 import com.douineau.testspringboot.model.security.Role;
-import com.douineau.testspringboot.service.IGenericAdminService;
+import com.douineau.testspringboot.service.IGenericService;
 
 @Service
-public class RoleService implements IGenericAdminService<Role> {
+public class RoleService implements IGenericService<Role> {
 	
 	@Autowired
 	private IRoleDao repo;
@@ -36,5 +36,11 @@ public class RoleService implements IGenericAdminService<Role> {
 	public String addObjects(Set<Role> objects) {
 		repo.saveAll(objects);
 		return "Objets de type : " + objects.getClass().getTypeName() + " bien insérés";
+	}
+
+	@Override
+	public String addObject(Role object) {
+		repo.save(object);
+		return "Objet de type : " + object.getClass().getTypeName() + " bien inséré";
 	}
 }
