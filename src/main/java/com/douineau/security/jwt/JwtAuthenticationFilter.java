@@ -39,7 +39,7 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 			throws AuthenticationException {
 
 		System.out.println("Tentative d'authentification");
-		System.out.println("Requête depuis un client : : " + request.getMethod() + " - " +  request.getRequestURI());
+		System.out.println("Requête depuis un client : " + request.getMethod() + " - " +  request.getRequestURI());
 		Authentication authentication = null;
 		try {
 			JwtAuthenticationRequest upaRequest = new ObjectMapper().readValue(request.getInputStream(),
