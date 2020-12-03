@@ -14,7 +14,7 @@ import com.douineau.model.api.Writer;
 public class ApiMappingConfig {
 	
 	@Bean("apiMapping")
-	public Map<String, Class<?>> mapping() {
+	public Map<String, Class<?>> apiMapping() {
 		
 		Map<String, Class<?>> mapping = new HashMap<String, Class<?>>();
 		mapping.put("/api/books", Book.class);

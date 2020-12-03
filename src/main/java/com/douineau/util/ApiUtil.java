@@ -8,16 +8,19 @@ import org.springframework.util.StringUtils;
 
 public class ApiUtil {
 	
+	private final static String PREFIX = "/api";
+	private final static String SLASH = "/";
+	
 	public static Class<?> getType(HttpServletRequest request, Map<String, Class<?>> apiMapping) {
 		
 		String req = request.getRequestURI();
+		int thirdSlash = req.indexOf(SLASH, PREFIX.length() + 1);
+				
 		String key = null;
-		int occurances = StringUtils.countOccurrencesOf(req, "/");
-		int lastSlash = req.lastIndexOf("/");
-		if(occurances < 3) {
+		if(thirdSlash == -1) {
 			key = req;
 		} else {
-			key = req.substring(0, lastSlash);
+			key = req.substring(0, thirdSlash);
 		}
 		
 		Class<?> clazz = apiMapping.get(key);
