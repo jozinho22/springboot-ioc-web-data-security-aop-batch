@@ -17,14 +17,12 @@ import com.douineau.testspringboot.security.ApplicationUserDetails;
 @Repository("realDao")
 public class ApplicationUserDetailsDaoReal implements IApplicationUserDetailsDao {
 
-	private final PasswordEncoder passwordEncoder;
 	private final IUserDao repo;
 	
 	@Autowired
 	public ApplicationUserDetailsDaoReal(PasswordEncoder passwordEncoder,
 			IUserDao repo) {
 		super();
-		this.passwordEncoder = passwordEncoder;
 		this.repo = repo;
 	}
 
@@ -36,7 +34,6 @@ public class ApplicationUserDetailsDaoReal implements IApplicationUserDetailsDao
 		if(userMayBe.isPresent()) {
 			
 			User u = userMayBe.get();
-			
 			List<SimpleGrantedAuthority> authorities = new ArrayList<SimpleGrantedAuthority>();
 			for(Role role : u.getRoles()) {
 				authorities.add(new SimpleGrantedAuthority(role.getName()));
@@ -45,10 +42,9 @@ public class ApplicationUserDetailsDaoReal implements IApplicationUserDetailsDao
 				authorities.add(new SimpleGrantedAuthority(permission.getName()));
 			}
 			
-			appUserDetails = new ApplicationUserDetails
-					(
+			appUserDetails = new ApplicationUserDetails(
 					u.getName(),
-					passwordEncoder.encode(u.getPassword()),
+					u.getPassword(),
 					u.isAccountNonExpired(),
 					u.isAccountNonLocked(),
 					u.isCredentialsNonExpired(),
@@ -60,8 +56,6 @@ public class ApplicationUserDetailsDaoReal implements IApplicationUserDetailsDao
 		}
 		
 		return Optional.of(appUserDetails);
-		
 	}
-
 	
 }

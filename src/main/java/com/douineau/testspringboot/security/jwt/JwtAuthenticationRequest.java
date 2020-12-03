@@ -1,11 +1,11 @@
 package com.douineau.testspringboot.security.jwt;
 
-public class UsernamePasswordAuthenticationRequest {
+public class JwtAuthenticationRequest {
 	
 	private String username;
 	private String password;
 	
-	public UsernamePasswordAuthenticationRequest() {
+	public JwtAuthenticationRequest() {
 		super();
 	}
 

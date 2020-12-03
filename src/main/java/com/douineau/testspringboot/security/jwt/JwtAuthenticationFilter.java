@@ -20,14 +20,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import io.jsonwebtoken.Jwts;
 
-public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
+public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final AuthenticationManager authenticationManager;
 
 	private final JwtConfig jwtConfig;
 	
 	@Autowired
-	public JwtUsernameAndPasswordAuthenticationFilter(AuthenticationManager authenticationManager,
+	public JwtAuthenticationFilter(AuthenticationManager authenticationManager,
 			JwtConfig jwtConfig) {
 		super();
 		this.authenticationManager = authenticationManager;
@@ -42,8 +42,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 		System.out.println("Requête depuis un client : : " + request.getMethod() + " - " +  request.getRequestURI());
 		Authentication authentication = null;
 		try {
-			UsernamePasswordAuthenticationRequest upaRequest = new ObjectMapper().readValue(request.getInputStream(),
-					UsernamePasswordAuthenticationRequest.class);
+			JwtAuthenticationRequest upaRequest = new ObjectMapper().readValue(request.getInputStream(),
+					JwtAuthenticationRequest.class);
 
 			authentication = new UsernamePasswordAuthenticationToken(upaRequest.getUsername(),
 					upaRequest.getPassword());
@@ -53,6 +53,14 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 		}
 		
 		return authenticationManager.authenticate(authentication);
+	}
+	
+	@Override
+	protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response,
+			AuthenticationException failed) throws IOException, ServletException {
+		
+		System.out.println("Authentification ratée");
+		super.unsuccessfulAuthentication(request, response, failed);
 	}
 	
 	@Override
@@ -81,6 +89,8 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 				jwtConfig.getTokenPrefix() + token);	
 		
 		System.out.println("Token envoyé dans le Header : " + token);
+		
+		super.successfulAuthentication(request, response, chain, authResult);
 	}
 
 }

@@ -1,6 +1,7 @@
 package com.douineau.testspringboot.security.jwt;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,6 +15,8 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -25,12 +28,12 @@ import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 
-public class JwtTokenVerifier extends OncePerRequestFilter{
+public class JwtTokenVerifierFilter extends OncePerRequestFilter {
 
 	private final JwtConfig jwtConfig;
 	
 	@Autowired
-	public JwtTokenVerifier(JwtConfig jwtConfig) {
+	public JwtTokenVerifierFilter(JwtConfig jwtConfig) {
 		super();
 		this.jwtConfig = jwtConfig;
 	}
@@ -59,16 +62,17 @@ public class JwtTokenVerifier extends OncePerRequestFilter{
 				.parseClaimsJws(token);
 			Claims body = claimJws.getBody();
 			String username = body.getSubject();
+			
 			List<Map<String, String>> authorities = (List<Map<String, String>>) body.get("authorities");
-			Set<SimpleGrantedAuthority> simpleGrantedAuthorities = 
+			Set<SimpleGrantedAuthority> grantedAuthorities = 
 					authorities.stream()
 					.map(m -> new SimpleGrantedAuthority(m.get("authority")))
 					.collect(Collectors.toSet());
 			
-			Authentication authentication = new UsernamePasswordAuthenticationToken(
-					username,
+			Authentication authentication = new UsernamePasswordAuthenticationToken
+					(username,
 					null,
-					simpleGrantedAuthorities);
+					grantedAuthorities);
 			
 			if(authentication.isAuthenticated())
 				System.out.println("Bien authentifié sous le username " + username);

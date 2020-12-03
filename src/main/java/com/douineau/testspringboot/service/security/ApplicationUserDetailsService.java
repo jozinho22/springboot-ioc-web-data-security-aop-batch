@@ -15,7 +15,7 @@ import com.douineau.testspringboot.security.ApplicationUserDetails;
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
 	
-	private IApplicationUserDetailsDao repo;
+	private IApplicationUserDetailsDao auddRepo;
 
 //	@Autowired
 //	public ApplicationUserDetailsService(@Qualifier("fakeDao") ApplicationUserDetailsDao auddRepo) {
@@ -24,16 +24,16 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 //	}
 	
 	@Autowired
-	public ApplicationUserDetailsService(@Qualifier("fakeDao") IApplicationUserDetailsDao auddRepo) {
+	public ApplicationUserDetailsService(@Qualifier("realDao") IApplicationUserDetailsDao auddRepo) {
 		super();
-		this.repo = auddRepo;
+		this.auddRepo = auddRepo;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 //		Optional<User> user = repo.findByName(username);
-		Optional<ApplicationUserDetails> appUserDetails = repo.findUserDetailsByUsername(username);
+		Optional<ApplicationUserDetails> appUserDetails = auddRepo.findUserDetailsByUsername(username);
 		if(!appUserDetails.isPresent()) {
 			throw new UsernameNotFoundException("Ce username n'existe pas : " + username);
 		}

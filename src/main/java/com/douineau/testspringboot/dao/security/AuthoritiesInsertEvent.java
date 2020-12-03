@@ -2,6 +2,7 @@ package com.douineau.testspringboot.dao.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.event.EventListener;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -12,6 +13,7 @@ import com.douineau.testspringboot.security.enums.ApplicationPermission;
 import com.douineau.testspringboot.security.enums.ApplicationRole;
 import com.google.common.collect.Sets;
 
+@Configuration
 public class AuthoritiesInsertEvent {
 	
 	@Autowired

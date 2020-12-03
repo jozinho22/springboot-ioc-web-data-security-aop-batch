@@ -11,7 +11,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.douineau</groupId>
-	<artifactId>test-springboot</artifactId>
+	<artifactId>springboot-ioc-web-data-security-aop-batch</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>test-springboot</name>

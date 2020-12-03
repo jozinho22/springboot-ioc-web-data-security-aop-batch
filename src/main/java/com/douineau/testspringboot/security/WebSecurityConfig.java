@@ -15,8 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.douineau.testspringboot.security.enums.ApplicationPermission;
 import com.douineau.testspringboot.security.enums.ApplicationRole;
 import com.douineau.testspringboot.security.jwt.JwtConfig;
-import com.douineau.testspringboot.security.jwt.JwtTokenVerifier;
-import com.douineau.testspringboot.security.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import com.douineau.testspringboot.security.jwt.JwtTokenVerifierFilter;
+import com.douineau.testspringboot.security.jwt.JwtAuthenticationFilter;
 import com.douineau.testspringboot.service.security.ApplicationUserDetailsService;
 
 @Configuration
@@ -44,8 +44,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 			.and()
 			
-			.addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig))
-			.addFilterAfter(new JwtTokenVerifier(jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
+			.addFilter(new JwtAuthenticationFilter(authenticationManager(), jwtConfig))
+			.addFilterAfter(new JwtTokenVerifierFilter(jwtConfig), JwtAuthenticationFilter.class)
 			
 			.authorizeRequests()
 			
@@ -53,7 +53,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/login").permitAll()
 			
 			.antMatchers(HttpMethod.GET, "/admin/authorities", "/admin/users").hasRole(ApplicationRole.ADMIN.name())
-			.antMatchers(HttpMethod.POST, "/admin/authorities", "/admin/users").hasRole(ApplicationRole.ADMIN.name())
+			.antMatchers(HttpMethod.POST, "/admin/permissions", "/admin/users").hasRole(ApplicationRole.ADMIN.name())
 
 			.antMatchers(HttpMethod.GET, "/api/**").hasAuthority(ApplicationPermission.READ.name())
 			.antMatchers(HttpMethod.POST, "/api/**").hasAuthority(ApplicationPermission.WRITE.name())
