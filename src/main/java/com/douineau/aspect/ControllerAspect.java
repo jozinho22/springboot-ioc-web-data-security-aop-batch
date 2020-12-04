@@ -1,15 +1,15 @@
 package com.douineau.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 
-@Aspect
-//@Component
-@ComponentScan("com.douineau.aspect.*")
+import com.douineau.util.CustomLogger;
 
+@Aspect
+@Component
 public class ControllerAspect {
 	
 //	@Pointcut("execution(* com.douineau.controller.api.IGenericApiController.*(..))")
@@ -17,18 +17,17 @@ public class ControllerAspect {
 //		System.out.println("Pointcut method done");
 //	}
 	
-	@Pointcut("execution(* com.douineau.aspect.ControllerAspect.testAop(..))")
+	@Pointcut("execution(* com.douineau.controller.api.IGenericApiController.*(..))")
 	public void callingRequest() {
-		System.out.println("Pointcut method done");
 	}
 	
 	@Before("callingRequest()")
-	public void beforeAdvice( ) {
-		System.out.println("Before advice");
+	public void beforeAdvice(JoinPoint joinPoint) {
+	
+		System.out.println("StaticPart : " + joinPoint.getStaticPart());
+
+		CustomLogger.getBasicLogger().info("From BasicLogger");
+		CustomLogger.getCustomLogger().info("From customLogger");
 	}
 	
-	public static void testAop() {
-		
-	}
-
 }
