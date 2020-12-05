@@ -5,6 +5,7 @@ import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.douineau.annotation.JozinhoApi;
 import com.douineau.service.IGenericService;
 
 public class GenericController<T> implements IGenericController<T> {

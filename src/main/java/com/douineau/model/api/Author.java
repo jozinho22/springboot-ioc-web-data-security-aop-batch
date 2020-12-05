@@ -8,12 +8,16 @@ import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
 import com.douineau.model.AbstractEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Author extends AbstractEntity {
 	
 	@OneToMany(mappedBy = "author", fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
+//	@JsonIgnore
+	@JsonBackReference
 	private Set<Book> books;
 	
 	public Author() {

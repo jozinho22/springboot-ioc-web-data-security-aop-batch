@@ -33,11 +33,11 @@ public class GenericApiController<T> implements IGenericApiController<T> {
 
 	@Override
 	public T getObject(HttpServletRequest request, Integer id) {
-		T obj = service.getObject(ApiUtil.getType(request, apiMapping), id);
-		if(obj == null) {
+		T object = service.getObject(ApiUtil.getType(request, apiMapping), id);
+		if(object == null) {
 			throw new ApiNoContentException("Aucune donnée présente");
 		}
-		return service.getObject(ApiUtil.getType(request, apiMapping), id);
+		return object;
 	}
 
 	@Override

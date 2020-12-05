@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.douineau.annotation.JozinhoApi;
+
 //  @SpringBootApplication replaces this 3 annotations :
 //  - @Configuration
 //  - @EnableAutoConfiguration
@@ -20,6 +22,10 @@ public class JossSpringbootApplication implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
+	
+		if(getClass().isAnnotationPresent(JozinhoApi.class)) {
+			System.out.println("C'est une appli perso !!!!!!!!!!");
+		}
 
 	}
 }

@@ -6,6 +6,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.douineau.annotation.JozinhoApi;
 import com.douineau.dao.IGenericDao;
 
 @Service("api")
@@ -16,6 +17,9 @@ public class GenericApiService<T> implements IGenericApiService<T> {
 	
 	@Override
 	public T getObject(Class<?> clazz, Integer id) {
+		if(clazz.isAnnotationPresent(JozinhoApi.class)) {
+			System.out.println("Cet object " + clazz + "est géré par @JozinhoApi");
+		}
 		return dao.getObject(clazz, id);
 	}
 
