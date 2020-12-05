@@ -15,11 +15,11 @@ import com.douineau.service.IGenericService;
 public class RoleService implements IGenericService<Role> {
 	
 	@Autowired
-	private IRoleDao repo;
+	private IRoleDao dao;
 
 	@Override
 	public Role getObject(Integer id) {
-		Optional<Role> mayBe = repo.findById(id);
+		Optional<Role> mayBe = dao.findById(id);
 		if(mayBe.isPresent()) {
 			return mayBe.get();
 		} else {
@@ -29,18 +29,18 @@ public class RoleService implements IGenericService<Role> {
 	
 	@Override
 	public List<Role> getAllObjects() {
-		return  (List<Role>) repo.findAll();
+		return  (List<Role>) dao.findAll();
 	}
 
 	@Override
 	public String addObjects(Set<Role> objects) {
-		repo.saveAll(objects);
+		dao.saveAll(objects);
 		return "Objets de type : " + objects.getClass().getTypeName() + " bien insérés";
 	}
 
 	@Override
 	public String addObject(Role object) {
-		repo.save(object);
+		dao.save(object);
 		return "Objet de type : " + object.getClass().getTypeName() + " bien inséré";
 	}
 }

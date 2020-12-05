@@ -12,7 +12,7 @@ import com.douineau.dao.IGenericDao;
 public class GenericService<T> implements IGenericService<T> {
 
 	@Autowired
-	private IGenericDao<T> repo;
+	private IGenericDao<T> dao;
 	
 	@Override
 	public T getObject(Integer id) {

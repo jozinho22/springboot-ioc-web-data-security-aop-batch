@@ -6,9 +6,12 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
+import com.douineau.controller.api.exception.ApiException;
+import com.douineau.controller.api.exception.ApiNoContentException;
 import com.douineau.service.api.IGenericApiService;
 import com.douineau.util.ApiUtil;
 
@@ -30,6 +33,10 @@ public class GenericApiController<T> implements IGenericApiController<T> {
 
 	@Override
 	public T getObject(HttpServletRequest request, Integer id) {
+		T obj = service.getObject(ApiUtil.getType(request, apiMapping), id);
+		if(obj == null) {
+			throw new ApiNoContentException("Aucune donnée présente");
+		}
 		return service.getObject(ApiUtil.getType(request, apiMapping), id);
 	}
 

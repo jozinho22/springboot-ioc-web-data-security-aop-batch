@@ -15,7 +15,7 @@ import com.douineau.security.ApplicationUserDetails;
 @Service
 public class ApplicationUserDetailsService implements UserDetailsService {
 	
-	private IApplicationUserDetailsDao auddRepo;
+	private IApplicationUserDetailsDao dao;
 
 //	@Autowired
 //	public ApplicationUserDetailsService(@Qualifier("fakeDao") ApplicationUserDetailsDao auddRepo) {
@@ -24,16 +24,16 @@ public class ApplicationUserDetailsService implements UserDetailsService {
 //	}
 	
 	@Autowired
-	public ApplicationUserDetailsService(@Qualifier("realDao") IApplicationUserDetailsDao auddRepo) {
+	public ApplicationUserDetailsService(@Qualifier("realDao") IApplicationUserDetailsDao dao) {
 		super();
-		this.auddRepo = auddRepo;
+		this.dao = dao;
 	}
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		
 //		Optional<User> user = repo.findByName(username);
-		Optional<ApplicationUserDetails> appUserDetails = auddRepo.findUserDetailsByUsername(username);
+		Optional<ApplicationUserDetails> appUserDetails = dao.findUserDetailsByUsername(username);
 		if(!appUserDetails.isPresent()) {
 			throw new UsernameNotFoundException("Ce username n'existe pas : " + username);
 		}

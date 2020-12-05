@@ -5,12 +5,12 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 
 @Configuration
-@PropertySource("classpath:db.properties")
+@PropertySource("classpath:database.properties")
 public class ExternalizedDatabaseConfig {
 	
-	@Value("${database.username}")
+	@Value("${db.username}")
     private String username;
-    @Value("${database.password}")
+    @Value("${db.password}")
     private String password;
 
 }

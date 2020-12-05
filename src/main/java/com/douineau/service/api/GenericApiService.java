@@ -12,27 +12,27 @@ import com.douineau.dao.IGenericDao;
 public class GenericApiService<T> implements IGenericApiService<T> {
 
 	@Autowired
-	private IGenericDao<T> repo;
+	private IGenericDao<T> dao;
 	
 	@Override
 	public T getObject(Class<?> clazz, Integer id) {
-		return repo.getObject(clazz, id);
+		return dao.getObject(clazz, id);
 	}
 
 	@Override
 	public List<T> getAllObjects(Class<?> clazz) {
-		return repo.getAllObjects(clazz);
+		return dao.getAllObjects(clazz);
 	}
 	
 	@Override
 	public String addObject(Class<?> clazz, T object) {
-		repo.addObject(clazz, object);
+		dao.addObject(clazz, object);
 		return "Objet de type : " + object.getClass().getTypeName() + " bien inséré (API générique)";
 	}
 
 	@Override
 	public String addObjects(Class<?> clazz, Set<T> objects) {
-		repo.addObjects(clazz, objects);
+		dao.addObjects(clazz, objects);
 		return "Objets de type : " + objects.getClass().getTypeName() + " bien insérés (API générique)";
 	}
 

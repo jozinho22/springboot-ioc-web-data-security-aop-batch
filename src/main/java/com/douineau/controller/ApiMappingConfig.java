@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 
 import com.douineau.model.api.Book;
 import com.douineau.model.api.Reader;
-import com.douineau.model.api.Writer;
+import com.douineau.model.api.Author;
 
 @Configuration
 public class ApiMappingConfig {
@@ -19,7 +19,7 @@ public class ApiMappingConfig {
 		Map<String, Class<?>> mapping = new HashMap<String, Class<?>>();
 		mapping.put("/api/books", Book.class);
 		mapping.put("/api/readers", Reader.class);
-		mapping.put("/api/writers", Writer.class);
+		mapping.put("/api/authors", Author.class);
 		
 		return mapping;
 	}

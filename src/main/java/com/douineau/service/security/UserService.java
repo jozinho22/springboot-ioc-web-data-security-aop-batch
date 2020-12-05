@@ -16,14 +16,14 @@ import com.douineau.service.IGenericService;
 public class UserService implements IGenericService<User> {
 	
 	@Autowired
-	private IUserDao userRepo;
+	private IUserDao userDao;
 	
 	@Autowired
 	private PasswordEncoder passworEncoder;
 
 	@Override
 	public User getObject(Integer id) {
-		Optional<User> mayBe = userRepo.findById(id);
+		Optional<User> mayBe = userDao.findById(id);
 		if(mayBe.isPresent()) {
 			return mayBe.get();
 		} else {
@@ -33,7 +33,7 @@ public class UserService implements IGenericService<User> {
 	
 	@Override
 	public List<User> getAllObjects() {
-		return  (List<User>) userRepo.findAll();
+		return  (List<User>) userDao.findAll();
 	}
 
 	@Override
@@ -58,11 +58,11 @@ public class UserService implements IGenericService<User> {
 				true
 				);
 	
-		User uToUpdateRolesAndPerms = userRepo.save(u);
+		User uToUpdateRolesAndPerms = userDao.save(u);
 		
 		uToUpdateRolesAndPerms.setRoles(object.getRoles());
 		uToUpdateRolesAndPerms.setPermissions(object.getPermissions());
-		userRepo.save(uToUpdateRolesAndPerms);
+		userDao.save(uToUpdateRolesAndPerms);
 		
 		return "Objet de type : " + object.getClass().getName() + " bien inséré";
 	}

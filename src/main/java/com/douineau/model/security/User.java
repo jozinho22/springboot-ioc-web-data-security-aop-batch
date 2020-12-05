@@ -1,6 +1,5 @@
 package com.douineau.model.security;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -38,26 +37,6 @@ public class User extends AbstractEntity {
 	private Set<Permission> permissions;
 
 	public User() {
-	}
-	
-	public User(
-			String name,
-			String password, 
-			boolean isAccountNonExpired, 
-			boolean isAccountNonLocked,
-			boolean isCredentialsNonExpired, 
-			boolean isEnabled, 
-			HashSet<Role> roles, 
-			HashSet<Permission> permissions) {
-		super();
-		this.name = name;
-		this.password = password;
-		this.isAccountNonExpired = isAccountNonExpired;
-		this.isAccountNonLocked = isAccountNonLocked;
-		this.isCredentialsNonExpired = isCredentialsNonExpired;
-		this.isEnabled = isEnabled;
-		this.roles = roles;
-		this.permissions = permissions;
 	}
 
 	public User(

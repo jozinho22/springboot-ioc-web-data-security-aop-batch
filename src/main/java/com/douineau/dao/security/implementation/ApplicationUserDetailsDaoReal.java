@@ -1,4 +1,4 @@
-package com.douineau.dao.security;
+package com.douineau.dao.security.implementation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
 
+import com.douineau.dao.security.IApplicationUserDetailsDao;
+import com.douineau.dao.security.IUserDao;
 import com.douineau.model.security.Permission;
 import com.douineau.model.security.Role;
 import com.douineau.model.security.User;
