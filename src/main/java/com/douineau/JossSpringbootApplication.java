@@ -11,7 +11,7 @@ import com.douineau.annotation.JozinhoApi;
 //  - @EnableAutoConfiguration
 //  - @ComponentScan
 @SpringBootApplication
-public class JossSpringbootApplication implements CommandLineRunner {
+public class JossSpringbootApplication {
 
 //	@Autowired
 //	private ApplicationContext applicationContext;
@@ -20,12 +20,4 @@ public class JossSpringbootApplication implements CommandLineRunner {
 		SpringApplication.run(JossSpringbootApplication.class, args);
 	}
 
-	@Override
-	public void run(String... args) throws Exception {
-	
-		if(getClass().isAnnotationPresent(JozinhoApi.class)) {
-			System.out.println("C'est une appli perso !!!!!!!!!!");
-		}
-
-	}
 }
