@@ -344,3 +344,89 @@ An ERROR Message
 Job: [SimpleJob: [name=load-books]] launched with the following parameters: [{time=1608383809648}]
 Executing step: [books-file-load]
 Step: [books-file-load] executed in 136ms
+Job: [SimpleJob: [name=load-books]] completed with the following parameters: [{time=1608383809648}] and the following status: [COMPLETED] in 208ms
+Starting JossSpringbootApplication using Java 1.8.0_251 on LAPTOP-S0LJ880C with PID 10612 (C:\Users\josselin.douineau\projects\springboot-ioc-web-data-security-aop-batch\target\classes started by josselin.douineau in C:\Users\josselin.douineau\projects\springboot-ioc-web-data-security-aop-batch)
+The following profiles are active: dev
+Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+Finished Spring Data repository scanning in 222 ms. Found 6 JPA repository interfaces.
+Tomcat initialized with port(s): 8080 (http)
+Initializing ProtocolHandler ["http-nio-8080"]
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.39]
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 4518 ms
+Initializing ExecutorService 'applicationTaskExecutor'
+HHH000204: Processing PersistenceUnitInfo [name: default]
+Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'dataBaseWriter': Unsatisfied dependency expressed through field 'props'; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'com.douineau.util.CustomProperties' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
+Closing JPA EntityManagerFactory for persistence unit 'default'
+HHH000412: Hibernate ORM core version 5.4.23.Final
+HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+HikariPool-1 - Starting...
+HikariPool-1 - Start completed.
+HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Initialized JPA EntityManagerFactory for persistence unit 'default'
+Shutting down ExecutorService 'applicationTaskExecutor'
+HikariPool-1 - Shutdown initiated...
+HikariPool-1 - Shutdown completed.
+Stopping service [Tomcat]
+
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Field props in com.douineau.batch.DataBaseWriter required a bean of type 'com.douineau.util.CustomProperties' that could not be found.
+
+The injection point has the following annotations:
+	- @org.springframework.beans.factory.annotation.Autowired(required=true)
+
+
+Action:
+
+Consider defining a bean of type 'com.douineau.util.CustomProperties' in your configuration.
+
+Starting JossSpringbootApplication using Java 1.8.0_251 on LAPTOP-S0LJ880C with PID 13808 (C:\Users\josselin.douineau\projects\springboot-ioc-web-data-security-aop-batch\target\classes started by josselin.douineau in C:\Users\josselin.douineau\projects\springboot-ioc-web-data-security-aop-batch)
+The following profiles are active: dev
+Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+Finished Spring Data repository scanning in 179 ms. Found 6 JPA repository interfaces.
+Tomcat initialized with port(s): 8080 (http)
+Initializing ProtocolHandler ["http-nio-8080"]
+Starting service [Tomcat]
+Starting Servlet engine: [Apache Tomcat/9.0.39]
+Initializing Spring embedded WebApplicationContext
+Root WebApplicationContext: initialization completed in 4871 ms
+Initializing ExecutorService 'applicationTaskExecutor'
+HHH000204: Processing PersistenceUnitInfo [name: default]
+HHH000412: Hibernate ORM core version 5.4.23.Final
+HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+HikariPool-1 - Starting...
+Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7e0bc8a3, org.springframework.security.web.context.SecurityContextPersistenceFilter@6c841199, org.springframework.security.web.header.HeaderWriterFilter@7544ac86, org.springframework.security.web.authentication.logout.LogoutFilter@2da3b078, com.douineau.security.jwt.JwtAuthenticationFilter@4b0f2299, com.douineau.security.jwt.JwtTokenVerifierFilter@33063f5b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@489091bd, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2cc75074, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@15405bd6, org.springframework.security.web.session.SessionManagementFilter@b1534d3, org.springframework.security.web.access.ExceptionTranslationFilter@984169e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2e869098]
+Adding welcome page template: index
+HikariPool-1 - Start completed.
+HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+JPA does not support custom isolation levels, so locks may not be taken when launching Jobs
+No database type set, using meta data indicating: MYSQL
+No TaskExecutor has been set, defaulting to synchronous executor.
+Starting ProtocolHandler ["http-nio-8080"]
+Tomcat started on port(s): 8080 (http) with context path ''
+Triggering deferred initialization of Spring Data repositories…
+HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+Initialized JPA EntityManagerFactory for persistence unit 'default'
+Spring Data repositories initialized!
+Started JossSpringbootApplication in 12.5 seconds (JVM running for 13.875)
+Initializing Spring DispatcherServlet 'dispatcherServlet'
+Initializing Servlet 'dispatcherServlet'
+Completed initialization in 0 ms
+Job: [SimpleJob: [name=load-books]] launched with the following parameters: [{time=1608402681584}]
+Executing step: [books-file-load]
+Step: [books-file-load] executed in 113ms
+Job: [SimpleJob: [name=load-books]] completed with the following parameters: [{time=1608402681584}] and the following status: [COMPLETED] in 248ms
+Job: [SimpleJob: [name=load-books]] launched with the following parameters: [{time=1608402683723}]
+Executing step: [books-file-load]
