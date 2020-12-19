@@ -49,7 +49,6 @@ public class SpringBatchConfig {
                 .build();
     }
 
-
     @Bean
     public FlatFileItemReader<Book> bookFlatFileItemReader(
             @Value("${book.csv.input}") ClassPathResource classPathResource) {
